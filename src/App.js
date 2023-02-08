@@ -11,6 +11,10 @@ import JoinChat from "./components/JoinChat";
 
 import PublicRoutes from "./Routes/PublicRoutes";
 import PrivateRoutes from "./Routes/PrivateRoutes";
+import ResetPassword from './components/ResetPassword';
+import ForgetPassword from './components/ForgetPassword';
+import Header from './components/Header';
+// import Footer from './components/Footer';
 
 const socket = io.connect('http://localhost:4000');
 
@@ -24,17 +28,23 @@ function App() {
     <UserContext.Provider value={{user , setUser , loading}}>  
     {/* //user- from context */}
       <div className="App">
+        
+        <Header/>
+
         <Routes>
          <Route element={<PublicRoutes />}>
             <Route path='/' element={<JoinChat socket={socket} /> } />
             <Route path='/login' element={<Login/>}/>
-            <Route path='/register' element={<Register/>}/>          
-          </Route> 
-                    
-        </Routes>              
-        <Routes element={<PrivateRoutes/>}>
-          {/* <Route path='/chat' element={<Chat/>}/> */}
-        </Routes>
+            <Route path='/register' element={<Register/>}/>
+            <Route path='/forgetPassword' element={<ForgetPassword/>}/> 
+            <Route path='/passwordReset' element={<ResetPassword/>}/>
+                  
+          </Route>                     
+                     
+          <Route element={<PrivateRoutes/>}>
+            {/* <Route path='/chat' element={<Chat/>}/> */}
+          </Route>
+        </Routes> 
       </div>
     </UserContext.Provider>
   );

@@ -1,10 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () =>{
 
     const [userCred, setUserCred ] = useState({email : '', password :''});
     
+    const navigate = useNavigate();
+
     //its get already given empty cred then it will set usersCreds
     //very usefull when update multiple values to state
     const handleCred = value => {
@@ -13,16 +16,19 @@ const Login = () =>{
         })
     }
 
-   useEffect(() => {
-        console.log('Credentials :',userCred)
-   }, [userCred])
+//    useEffect(() => {
+//         console.log('Credentials :',userCred)
+//    }, [userCred])
 
    const handleLogin = async (event) => {    
      try{
         //prevent default - untill the function end that event will carry
-        event.preventDefault();        
-        const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/signin`, userCred,{withCredentials: true});
-        console.log('response :', response );
+        event.preventDefault();
+        const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/signin`, userCred, {withCredentials: true});
+        // console.log('response :', response );
+        if(response){
+            navigate('/');
+        }
      }catch(error){
         console.log('Error :',error);
      } 
@@ -46,7 +52,7 @@ const Login = () =>{
             <a href="/forgotPassword">Forgot password?</a>
         </div>
     </div>
-)
+    )
 }
 
 export default Login;

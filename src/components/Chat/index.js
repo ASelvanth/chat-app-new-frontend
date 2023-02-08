@@ -4,18 +4,19 @@ const Chat = ({socket , userName , room}) =>{
     const [messages, setMessages] =useState([]);
     const [currentMessage, setCurrentMessage] = useState("");
 
-    useEffect(()=>{
-        socket.on('receive-message', data =>{
-            setMessages(list => [...list , data])
+    useEffect(() => {
+        socket.on('receive-message', data => {
+            setMessages(list => [...list, data]); 
         })
-    },[socket])
+    }, [socket])
+
      const sendMessage =  async ()=>{
-        if(currentMessage){
+        if(currentMessage !== '' ){
             const messageData = {
                 room : room,
                 author : userName,
                 message : currentMessage ,
-                time : new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes()
+                time: new Date(Date.now()).getHours() + ':' + new Date(Date.now()).getMinutes()
 
             }
             //sent data here 
