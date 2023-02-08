@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from "react";
+// import { useState } from "react";
 import io from "socket.io-client";
 import {Routes , Route} from "react-router-dom";
 import UserContext from "./Context/UserContext";
@@ -45,6 +45,7 @@ function App() {
             {/* <Route path='/chat' element={<Chat/>}/> */}
           </Route>
         </Routes> 
+        {/* <Footer/> */}
       </div>
     </UserContext.Provider>
   );

@@ -1,9 +1,9 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const ForgetPassword = () => {
-    
+
     const [email, setEmail] = useState('');
     const [isEmailSent, setIsEmailSent] = useState(false);
     const navigate = useNavigate();
@@ -12,7 +12,8 @@ const ForgetPassword = () => {
     const handleSubmit = async (event) => {
         try {
             event.preventDefault();
-            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/ForgetPassword`, { email: email }, { withCredentials: true });
+            const response = await axios.post("http://localhost:4000/api/ForgetPassword", { email: email }, { withCredentials: true });
+            // const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/ForgetPassword`, { email: email }, { withCredentials: true });
             if (response) {
                 setIsEmailSent(true);
             }

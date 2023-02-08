@@ -6,11 +6,11 @@ const useFindUser = () => {
     const [user, setUser] = useState(null);
     const [loading , setLoading] = useState(false);
     // const accessToken = localStorage.getItem('accessToken');
-
     // const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2I3ZTIyYTE1ZjRhNmU5ODIwYTA1NzgiLCJpYXQiOjE2NzUxNDg2NTd9.2ArPGKvpDXhmnew_iApqq7Ie5OjThWl_kyyHCwsnX6U';
 
     const getUser = async () => {
         try{
+            // const response = await axios.get("http://localhost:4000/api/user",{withCredentials: true});
             const response = await axios.get(`${process.env.REACT_APP_BASE_URL}/user`,{withCredentials: true});
             if(response.data.success){
                 console.log('Response : ',response.data);
